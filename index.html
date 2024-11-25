@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+
+<body class="deep-orange lighten-4" >
+
+  <div class="container z-depth-2  white">
+    <h4 class="center-align">Encuesta de Comida</h4>
+
+    <!-- Formulario -->
+    <form id="formulario"  style="margin: 20px;">
+
+      <!-- Edad-->
+      <div class="input-field">
+        <input id="txtEdad" type="number" min="15" max="75" required>
+        <label for="edad">Edad</label>
+      </div>
+
+      <!-- Bebida-->
+      <div class="input-field">
+        <select id="cboBebidaFavorita" required>
+          <option value="" disabled selected>Elige tu bebida favorita</option>
+          <option value="Café">Café</option>
+          <option value="Té">Té</option>
+          <option value="Agua">Agua</option>
+          <option value="Gaseosa">Gaseosa</option>
+        </select>
+        <label for="cboBebidaFavorita">Bebida favorita</label>
+      </div>
+
+      <!-- Comida-->
+      <div class="input-field">
+        <select id="cboComidaFavorita" required>
+          <option value="" disabled selected>Elige tu comida rápida favorita</option>
+          <option value="Pizza">Pizza</option>
+          <option value="Hamburguesa">Hamburguesa</option>
+          <option value="PapasFritas">Papas Fritas</option>
+          <option value="Ninguna">Ninguna de las anteriores</option>
+        </select>
+        <label for="cboComidaFavorita">Comida rápida favorita</label>
+      </div>
+
+      <!--cine -->
+      <p>¿Le gusta ir al cine?</p>
+      <p>
+        <label>
+          <input name="cine" type="radio" value="Si" required id="chkCineSi" />
+          <span>Si</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="cine" type="radio" value="No" required id="chkCineNo"/>
+          <span>No</span>
+        </label>
+      </p>
+
+      <!-- Botón enviar -->
+      <div class="">
+        <button class="btn waves-effect waves-light"  id="btnEnviar">
+          Enviar
+        </button>
+      </div>
+
+      <!-- Resumen de respuestas -->
+      <div id="resumenRespuestas" class="row">
+        <h5 class="center-align">Resumen de Respuestas</h5>
+    </div>
+    
+    </form>
+  </div>
+
+
+
+
+  <script src="index.js"></script>
+  <!-- Importando Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // Inicialización de componentes de Materialize
+    document.addEventListener('DOMContentLoaded', function() {
+      const selects = document.querySelectorAll('select');
+      M.FormSelect.init(selects);
+    });
+  </script>
+</body>
+</html>
