@@ -18,6 +18,8 @@ function guardarRespuestas(event) {
     // agregamos las respuestas al arreglo
     respuestas.push(respuesta);
 
+    console.log(respuestas);
+
     MostrarPorcentajes();
     limpiarFormulario();
 
@@ -25,6 +27,7 @@ function guardarRespuestas(event) {
 
 function calcularEdadPromedio() {
     let suma = 0; 
+
 
     for (let i = 0; i < respuestas.length; i++) {
         suma += respuestas[i].edad; 
@@ -40,6 +43,7 @@ function calcularEdadPromedio() {
 
 
 function mostrarPromedioEdad() {
+
     const promedio = calcularEdadPromedio();
 
     let promedioEdad = document.getElementById('promedioEdad');
@@ -99,10 +103,10 @@ function calcularPorcentajesBebida() {
 
     // Calcular los porcentajes
     return {
-        cafe: ((contadorCafe / totalRespuestas) * 100).toFixed(2),
-        te: ((contadorTe / totalRespuestas) * 100).toFixed(2),
-        agua: ((contadorAgua / totalRespuestas) * 100).toFixed(2),
-        gaseosa: ((contadorGaseosa / totalRespuestas) * 100).toFixed(2)
+        cafe: calcularPromedio(contadorCafe,totalRespuestas),
+        te: calcularPromedio(contadorTe,totalRespuestas),
+        agua: calcularPromedio(contadorAgua,totalRespuestas),
+        gaseosa: calcularPromedio(contadorGaseosa,totalRespuestas)
     };
 }
 
@@ -174,10 +178,10 @@ function CalcularPorcentajeComida(){
  
     // se calculan  los porcentajes 
     return {
-        Pizza: ((contadorPizza / totalRespuestas) * 100).toFixed(2),
-        Hamburguesa: ((contadorHamburguesa / totalRespuestas) * 100).toFixed(2),
-        PapaFritas: ((contadorPapasFritas / totalRespuestas) * 100).toFixed(2),
-        Ninguna: ((contadorNinguna/totalRespuestas)*100).toFixed(2),
+        Pizza: calcularPromedio(contadorPizza,totalRespuestas),
+        Hamburguesa: calcularPromedio(contadorHamburguesa,totalRespuestas),
+        PapaFritas:calcularPromedio(contadorPapasFritas,totalRespuestas),
+        Ninguna: calcularPromedio(contadorNinguna,totalRespuestas),
     };   
 
 }
@@ -226,11 +230,11 @@ function CalcularPorcentajeCine(){
         }
     }
 
-    // Calcular los porcentajes
-    const porcentajeSi = ((cineSi / totalRespuestas) * 100).toFixed(2);
-    const porcentajeNo = ((cineNo / totalRespuestas) * 100).toFixed(2);
+    //llamamos a la funcion que lo calcule
+    const porcentajeSi = calcularPromedio(cineSi,totalRespuestas);
+    const porcentajeNo = calcularPromedio(cineNo,totalRespuestas);
 
-    return { porcentajeSi, porcentajeNo };  // Devuelve los porcentajes si lo necesitas
+    return { porcentajeSi, porcentajeNo }; 
 }
 
 
@@ -317,6 +321,14 @@ function limpiarFormulario() {
     const formulario = document.getElementById('formulario');
     
     formulario.reset();
+}
+
+//funcion para calcular el promedio.
+function calcularPromedio(contador, total) {
+    if (total === 0) {
+        return 0;
+    }
+    return (contador / total) * 100;
 }
 
 //evento al botón
